@@ -12,9 +12,9 @@ const columns = [
 ];
 
 const statusOptions = [
-  { name: "Active", uid: "active" },
-  { name: "Paused", uid: "paused" },
-  { name: "Vacation", uid: "vacation" },
+  { name: "Screened", uid: "screened" },
+  { name: "Failed", uid: "failed" },
+  // { name: "Vacation", uid: "vacation" },
 ];
 
 const users = [
