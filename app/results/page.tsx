@@ -28,6 +28,7 @@ import { SearchIcon } from "./SearchIcon";
 import { columns, users, statusOptions } from "./data";
 import { capitalize } from "./utils";
 import CallModal from "./CallModal";
+import CandidateModal from "./CandidateModal";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   screened: "success",
@@ -170,19 +171,7 @@ export default function App() {
         case "actions":
           return (
             <div className="relative flex justify-end items-center gap-2">
-              <Dropdown>
-                <DropdownTrigger>
-                  <Button isIconOnly size="sm" variant="light">
-                    <VerticalDotsIcon className="text-default-300" />
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu>
-                  <DropdownItem href={`/candidate/${candidate.id}`}>
-                    View
-                  </DropdownItem>
-                  <DropdownItem>Delete</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+              <CandidateModal candidate={candidate}></CandidateModal>
             </div>
           );
         default:
