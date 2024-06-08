@@ -32,6 +32,7 @@ import CandidateModal from "./CandidateModal";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   screened: "success",
+  called: "success",
   failed: "danger",
   vacation: "warning",
 };
@@ -45,7 +46,9 @@ const INITIAL_VISIBLE_COLUMNS = [
   "actions",
 ];
 
-const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+// const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+
+const endpoint = "http://localhost:8080";
 
 type User = (typeof users)[0];
 
@@ -280,7 +283,7 @@ export default function App() {
             {/* <Button color="primary" endContent={<PlusIcon />}>
               Add New
             </Button> */}
-            <CallModal></CallModal>
+            {/* <CallModal></CallModal> */}
           </div>
         </div>
         <div className="flex justify-between items-center">

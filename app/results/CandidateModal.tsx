@@ -11,8 +11,11 @@ import {
   Code,
 } from "@nextui-org/react";
 
+const endpoint = "http://localhost:8080";
+
 export default function CandidateModal({ candidate }: any) {
   const {
+    id,
     name,
     role,
     email,
@@ -27,6 +30,27 @@ export default function CandidateModal({ candidate }: any) {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [backdrop, setBackdrop] = React.useState("opaque");
+
+  const [query, setQuery] = React.useState("");
+
+  const callCandidate = () => {
+    // alert("Calling candidate...");
+    console.log("Calling candidate...", query);
+
+    // Send a POST request to the backend to call the candidate
+    fetch(`${endpoint}/call?document_id=${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: "+61481393533" || phone,
+        query: query,
+      }),
+    }).then((res) => {
+      console.log("Candidate called!");
+    });
+  };
 
   React.useEffect(() => {
     setBackdrop("blur");
@@ -98,6 +122,8 @@ export default function CandidateModal({ candidate }: any) {
                 )}
                 {!summary && (
                   <Textarea
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
                     label={`If you believe ${name} is suitable for the job, please provide the call details and any other relevant information.`}
                     labelPlacement="outside"
                     placeholder="Details of the call. E.g. confirm candidate's availability, salary expectations, etc."
@@ -112,7 +138,7 @@ export default function CandidateModal({ candidate }: any) {
                   Close
                 </Button>
                 {!summary && (
-                  <Button color="primary" onPress={onClose}>
+                  <Button color="primary" onPress={callCandidate}>
                     Call
                   </Button>
                 )}

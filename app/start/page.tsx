@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { Button, Textarea } from "@nextui-org/react";
 import { Progress } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
-const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+// const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+
+const endpoint = "http://localhost:8080";
 
 export default function BlogPage() {
   const [jobDescription, setJobDescription] = useState("");
@@ -12,6 +15,8 @@ export default function BlogPage() {
   const [files, setFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const router = useRouter();
 
   const uploadFile = async (file: File) => {
     const formData = new FormData();
@@ -25,11 +30,7 @@ export default function BlogPage() {
 
   const startScreening = async () => {
     // Validate inputs
-    if (
-      jobDescription.trim() === "" ||
-      coreCriteria.trim() === "" ||
-      files.length === 0
-    ) {
+    if (jobDescription.trim() === "" || coreCriteria.trim() === "") {
       alert("Please fill in all fields and upload at least one file.");
       return;
     }
@@ -46,13 +47,18 @@ export default function BlogPage() {
     // Start screening
     await fetch(`${endpoint}/screen?user_id=660016420c2fa4e0368ccb26`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         job_description: jobDescription,
-        core_criteria: coreCriteria,
+        key_criteria: coreCriteria,
       }),
+    }).then((res) => {
+      setLoading(false);
+      setProgress(0);
+      router.push("/results");
     });
-
-    setLoading(false);
   };
 
   return (
