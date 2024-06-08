@@ -5,9 +5,9 @@ import { Button, Textarea } from "@nextui-org/react";
 import { Progress } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-// const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+// const endpoint = "http://localhost:8080";
 
-const endpoint = "http://localhost:8080";
+const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
 
 export default function BlogPage() {
   const [jobDescription, setJobDescription] = useState("");

@@ -25,26 +25,22 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps,
-  } = useSwitch({
-    isSelected: theme === "light" || isSSR,
-    "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
-    onChange,
-  });
+  const { isSelected, getBaseProps, getInputProps, getWrapperProps } =
+    useSwitch({
+      isSelected: theme === "light" || isSSR,
+      "aria-label": `Switch to ${
+        theme === "light" || isSSR ? "dark" : "light"
+      } mode`,
+      onChange,
+    });
 
   return (
-    <Component
+    <div
       {...getBaseProps({
         className: clsx(
           "px-px transition-opacity hover:opacity-80 cursor-pointer",
           className,
-          classNames?.base,
+          classNames?.base
         ),
       })}
     >
@@ -53,22 +49,14 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
       </VisuallyHidden>
       <div
         {...getWrapperProps()}
-        className={slots.wrapper({
-          class: clsx(
-            [
-              "w-auto h-auto",
-              "bg-transparent",
-              "rounded-lg",
-              "flex items-center justify-center",
-              "group-data-[selected=true]:bg-transparent",
-              "!text-default-500",
-              "pt-px",
-              "px-0",
-              "mx-0",
-            ],
-            classNames?.wrapper,
-          ),
-        })}
+        className={clsx(
+          "w-auto h-auto bg-transparent rounded-lg flex items-center justify-center",
+          "!text-default-500 pt-px px-0 mx-0",
+          classNames?.wrapper,
+          {
+            "group-data-[selected=true]:bg-transparent": isSelected,
+          }
+        )}
       >
         {!isSelected || isSSR ? (
           <SunFilledIcon size={22} />
@@ -76,6 +64,6 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           <MoonFilledIcon size={22} />
         )}
       </div>
-    </Component>
+    </div>
   );
 };

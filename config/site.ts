@@ -9,7 +9,7 @@ export const siteConfig = {
       href: "/",
     },
   ],
-  navMenuItems: [],
+  navMenuItems: [] as any[],
   links: {
     github: "https://github.com/nextui-org/nextui",
     twitter: "https://twitter.com/getnextui",

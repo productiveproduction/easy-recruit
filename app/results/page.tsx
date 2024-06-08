@@ -46,9 +46,9 @@ const INITIAL_VISIBLE_COLUMNS = [
   "actions",
 ];
 
-// const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+// const endpoint = "http://localhost:8080";
 
-const endpoint = "http://localhost:8080";
+const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
 
 type User = (typeof users)[0];
 
