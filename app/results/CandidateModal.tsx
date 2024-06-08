@@ -112,7 +112,7 @@ export default function CandidateModal({ candidate }: any) {
                     >
                       <span className="text-small">{status}</span>
                     </Code>
-                    <div className="bg-gray-100 mt-6 p-4 rounded-md">
+                    <div className="bg-gray-100 dark:bg-gray-800 mt-6 p-4 rounded-md">
                       <h4 className="font-bold">Call summary</h4>
                       {transcript.split("\n").map((line: string, i: number) => (
                         <p className="text-small" key={i}>

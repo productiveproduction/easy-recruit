@@ -25,17 +25,20 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
-  const { isSelected, getBaseProps, getInputProps, getWrapperProps } =
-    useSwitch({
-      isSelected: theme === "light" || isSSR,
-      "aria-label": `Switch to ${
-        theme === "light" || isSSR ? "dark" : "light"
-      } mode`,
-      onChange,
-    });
+  const {
+    Component,
+    isSelected,
+    getBaseProps,
+    getInputProps,
+    getWrapperProps,
+  } = useSwitch({
+    isSelected: theme === "light",
+    "aria-label": `Switch to ${theme === "light" ? "dark" : "light"} mode`,
+    onChange,
+  });
 
   return (
-    <div
+    <Component
       {...getBaseProps({
         className: clsx(
           "px-px transition-opacity hover:opacity-80 cursor-pointer",
@@ -58,12 +61,12 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           }
         )}
       >
-        {!isSelected || isSSR ? (
-          <SunFilledIcon size={22} />
-        ) : (
+        {isSelected ? (
           <MoonFilledIcon size={22} />
+        ) : (
+          <SunFilledIcon size={22} />
         )}
       </div>
-    </div>
+    </Component>
   );
 };
