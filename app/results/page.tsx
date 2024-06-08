@@ -33,7 +33,14 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
   vacation: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = [
+  "name",
+  "role",
+  "phone",
+  "score",
+  "status",
+  "actions",
+];
 
 type User = (typeof users)[0];
 
@@ -122,7 +129,7 @@ export default function App() {
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {user.team}
+              {user.company}
             </p>
           </div>
         );
