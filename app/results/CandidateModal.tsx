@@ -46,12 +46,14 @@ export default function CandidateModal({ candidate }: any) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        phone: "+61481393533" || phone,
         query: query,
       }),
     }).then((res) => {
       console.log("Candidate called!");
     });
+
+    // Close the modal
+    onOpenChange();
   };
 
   React.useEffect(() => {

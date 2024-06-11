@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Modal,
   ModalContent,
@@ -10,18 +10,46 @@ import {
   Textarea,
 } from "@nextui-org/react";
 
-export default function CallModal({ children }: any) {
+const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
+
+// const endpoint = "http://localhost:8080";
+
+export default function CallModal({ selectedKeys }: any) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  // console.log("Selected keys: ", selectedKeys);
+
+  // useEffect(() => {
+  //   console.log("Selected keys: ", selectedKeys);
+  // }, [selectedKeys]);
+
+  const [query, setQuery] = React.useState("");
+
+  const callCandidates = () => {
+    console.log("Calling candidates...", selectedKeys);
+
+    selectedKeys.forEach((key: any) => {
+      fetch(`${endpoint}/call?document_id=${key}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: query,
+        }),
+      }).then((res) => {
+        console.log("Candidate called!");
+      });
+    });
+
+    onOpenChange();
+  };
 
   return (
     <>
-      {children ? (
-        children
-      ) : (
-        <Button color="primary" onPress={onOpen}>
-          Contact Candidates
-        </Button>
-      )}
+      <Button color="primary" onPress={onOpen}>
+        Call Candidates
+      </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
@@ -32,6 +60,8 @@ export default function CallModal({ children }: any) {
               <ModalBody>
                 <p></p>
                 <Textarea
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
                   label="Please provide the details of the call and any other relevant information."
                   labelPlacement="outside"
                   placeholder="Details of the call. E.g. confirm candidate's availability, salary expectations, etc."
@@ -44,7 +74,7 @@ export default function CallModal({ children }: any) {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color="primary" onPress={callCandidates}>
                   Call
                 </Button>
               </ModalFooter>

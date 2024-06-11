@@ -57,6 +57,11 @@ export default function App() {
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([])
   );
+
+  React.useEffect(() => {
+    console.log("Selected keys: ", selectedKeys);
+  }, [selectedKeys]);
+
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
@@ -204,6 +209,10 @@ export default function App() {
     []
   );
 
+  const onCallClicked = React.useCallback(() => {
+    console.log("Calling candidates...", selectedKeys);
+  }, [selectedKeys]);
+
   const onSearchChange = React.useCallback((value?: string) => {
     if (value) {
       setFilterValue(value);
@@ -283,7 +292,7 @@ export default function App() {
             {/* <Button color="primary" endContent={<PlusIcon />}>
               Add New
             </Button> */}
-            {/* <CallModal></CallModal> */}
+            <CallModal selectedKeys={selectedKeys}></CallModal>
           </div>
         </div>
         <div className="flex justify-between items-center">
@@ -308,6 +317,7 @@ export default function App() {
     filterValue,
     statusFilter,
     visibleColumns,
+    selectedKeys,
     onSearchChange,
     onRowsPerPageChange,
     candidates.length,
