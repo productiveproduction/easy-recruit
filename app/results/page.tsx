@@ -48,7 +48,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 
 // const endpoint = "http://localhost:8080";
 
-const endpoint = "https://backend-prod-jbzvblgmza-ts.a.run.app";
+const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
 
 type User = (typeof users)[0];
 
@@ -77,7 +77,7 @@ export default function App() {
 
   React.useEffect(() => {
     const fetchData = () => {
-      fetch(`${endpoint}/screen?user_id=666e2ef3b781a9c55c9ec230`)
+      fetch(`${endpoint}/screen?user_id=660016420c2fa4e0368ccb26`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

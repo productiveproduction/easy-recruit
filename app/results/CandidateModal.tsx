@@ -13,7 +13,7 @@ import {
 
 // const endpoint = "http://localhost:8080";
 
-const endpoint = "https://backend-prod-jbzvblgmza-ts.a.run.app";
+const endpoint = "https://backend-dev-jbzvblgmza-ts.a.run.app";
 
 export default function CandidateModal({ candidate }: any) {
   const {
