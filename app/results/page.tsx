@@ -77,7 +77,7 @@ export default function App() {
 
   React.useEffect(() => {
     const fetchData = () => {
-      fetch(`${endpoint}/screen?user_id=660016420c2fa4e0368ccb26`)
+      fetch(`${endpoint}/screen?user_id=666e2ef3b781a9c55c9ec230`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

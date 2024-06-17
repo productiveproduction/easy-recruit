@@ -22,7 +22,7 @@ export default function BlogPage() {
     const formData = new FormData();
     formData.append("file", file);
 
-    await fetch(`${endpoint}/upload?user_id=660016420c2fa4e0368ccb26`, {
+    await fetch(`${endpoint}/upload?user_id=666e2ef3b781a9c55c9ec230`, {
       method: "POST",
       body: formData,
     });
@@ -45,7 +45,7 @@ export default function BlogPage() {
     }
 
     // Start screening
-    await fetch(`${endpoint}/screen?user_id=660016420c2fa4e0368ccb26`, {
+    await fetch(`${endpoint}/screen?user_id=666e2ef3b781a9c55c9ec230`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
